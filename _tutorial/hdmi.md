@@ -8,12 +8,12 @@ specialty serial connection.  In this part, we will loook at how to achieve this
 If you want to download the code and play with it yourself, [see my git repo](https://github.com/jsandler18/raspi-kernel/tree/7228754baab88459ef0290893c7329a62eccfb90).
 
 ## Getting a Framebuffer
-If you are unfamiliar with the concept framebuffers, I reccomend you read [Framebuffer, Pitch, and Depth](/extra/framebuffer.html) before continuing.
+If you are unfamiliar with the concept framebuffers, I reccomend you read [Framebuffer, Pitch, and Depth](/extra/framebuffer) before continuing.
 
 In order to draw anything to the screen, we need to get a framebuffer.  We can only get one by asking the GPU very nicely.  This process differs between the Raspberry Pi
 Model 1 and Model 2.  Since I am developing for a Model 2 VM and Model 1 hardware, I will walk through both.
 
-Both models get a framebuffer using the mailbox peripheral.  Read [The Mailbox Peripheral](/extra/mailbox.html) to see details on how the mailbox works and the interfaces
+Both models get a framebuffer using the mailbox peripheral.  Read [The Mailbox Peripheral](/extra/mailbox) to see details on how the mailbox works and the interfaces
 that it has availible.
 
 For both methods, we will use a single header file, `include/kernel/framebuffer.h`, which will declare a struct to hold information about our framebuffer, a global
@@ -38,9 +38,9 @@ $(OBJ_DIR)/%.o: $(KER_SRC)/$(ARCHDIR)/%.c
 So now make will choose the correct implementation depending on whether `RASPI_MODEL=1` is passed.
 
 ### Initializing the Framebuffer on the Model 1
-In order to get a framebuffer on the model 1, we need to use the [framebuffer mailbox channel](/extra/fb-channel.html).  This channel's only purpose is to initialize a framebuffer.  The details of how to use the mailbox to get a framebuffer are covered [on this page](/extra/fb-channel.html), so here we will focus on the implementation.
+In order to get a framebuffer on the model 1, we need to use the [framebuffer mailbox channel](/extra/fb-channel).  This channel's only purpose is to initialize a framebuffer.  The details of how to use the mailbox to get a framebuffer are covered [on this page](/extra/fb-channel), so here we will focus on the implementation.
 
-Once we get the framebuffer from the mailbox, we fill out that global info struct, `fbinfo`, with the width, height, and depth that that we used to initialize the framebuffer.  We also put in the [pitch](/extra/framebuffer.html), the pointer to the framebuffer, the framebuffer size, the width and height of the screen in characters, and the position of the character cursor. These last two fields will be important when we are rendering characters instead of just pixels.
+Once we get the framebuffer from the mailbox, we fill out that global info struct, `fbinfo`, with the width, height, and depth that that we used to initialize the framebuffer.  We also put in the [pitch](/extra/framebuffer), the pointer to the framebuffer, the framebuffer size, the width and height of the screen in characters, and the position of the character cursor. These last two fields will be important when we are rendering characters instead of just pixels.
 
 Here is the code:
 ``` c
@@ -91,7 +91,7 @@ int framebuffer_init(void) {
 ```
 
 ### Initializing the Framebuffer on the Model 2 and up
-In order to get a framebuffer on the model 2 and up, we need to use the [property mailbox channel](/extra/prop-channel.html). This channel has purposes other than getting a framebuffer, so the code for using it is much more abstract than for the framebuffer channel.  As before, the details of how to use the property channel to get a framebuffer are discussed on [this page](/extra/prop-channel), so here we will talk about the implementation.
+In order to get a framebuffer on the model 2 and up, we need to use the [property mailbox channel](/extra/prop-channel). This channel has purposes other than getting a framebuffer, so the code for using it is much more abstract than for the framebuffer channel.  As before, the details of how to use the property channel to get a framebuffer are discussed on [this page](/extra/prop-channel), so here we will talk about the implementation.
 
 Since the property interface is more abstract, the definitions of tags and implementation of sending and receiving messages is done in `include/kernel/mailbox.h` and `src/kernel/mailbox.c`.  We define an interface `send_message(property_message_tag_t * tags)`, which takes a null terminated array of message tags, packs them into the proper format, sends the message, gets the response, and writes each tag's response back into the given array.
 
@@ -140,7 +140,7 @@ typedef struct {
 } property_message_tag_t;
 ```
 
-The code to pack an array of these tags into the proper format is just a straightforward implementation of the format described [here](/extra/prop-channel.html).  The `get_value_buffer_len` function simply hardcodes the various value buffer sizes for each defined tag.
+The code to pack an array of these tags into the proper format is just a straightforward implementation of the format described [here](/extra/prop-channel).  The `get_value_buffer_len` function simply hardcodes the various value buffer sizes for each defined tag.
 
 Here is the code:
 ```c
@@ -351,12 +351,12 @@ Now, all we need to do is replace `uart_putc` with `gpu_putc` in our implementat
 Here was what it should look like:
 ![My First Screen](/first_screen.jpg)
 
-To find out how to load your kernel on to real hardware, [see this page](/extra/hardware.html)
+To find out how to load your kernel on to real hardware, [see this page](/extra/hardware)
 
 The next step is to get multiple processes running, but before we can do that, we need to set up a system called interrupts.
 
 **Previous**:
-[Part 5 - Dynamic Memory](/tutorial/dyn-mem.html)
+[Part 5 - Dynamic Memory](/tutorial/dyn-mem)
 
 **Next**:
-[Part 7 - Interrupts](/tutorial/interrupts.html)
+[Part 7 - Interrupts](/tutorial/interrupts)

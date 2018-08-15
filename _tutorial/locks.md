@@ -132,7 +132,7 @@ This is a neat test, but to get our money's worth, we can add synchronization to
 
 
 **Previous:**
-[Part 8 - Processes](/tutorial/process.html)
+[Part 8 - Processes](/tutorial/process)
 
 **Next:**
-[Part 10 - Virtual Memory](/tutorial/vmem.html)
+[Part 10 - Virtual Memory](/tutorial/vmem)

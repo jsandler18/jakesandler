@@ -3,13 +3,13 @@ layout: page
 title:  Part 07 - Interrupts
 ---
 The next most useful thing we could do is run additional processes.  In order to do this, we first must set up exceptions and interrupts.  If you are
-unfamiliar with these concepts, see [this page](/extra/interrupts.html).
+unfamiliar with these concepts, see [this page](/extra/interrupts).
 
 If you want to download the code for this part and play with it for yourself, [see my git
 repo](https://github.com/jsandler18/raspi-kernel/tree/d8a4a821857ef82b14ea7500f653f88388033ffe)
 
 ## Setting up the Exception Vector Table
-Before we can handle IRQs, we must set up exception handlers, and we must set up the [exception vector table](/extra/interrupts.html) to jump to those handlers.
+Before we can handle IRQs, we must set up exception handlers, and we must set up the [exception vector table](/extra/interrupts) to jump to those handlers.
 
 Exception handlers are functions, but they cannot be normal functions, as exception handlers need more advanced prologue and epilogue code than a normal function.  Our
 compiler can handle this for us by using an attribute.  Here is what the IRQ handler signature looks like:
@@ -103,10 +103,10 @@ irq_handler_asm_wrapper:
     pop     {r0-r3, r12, lr}
     rfeia   sp!
 ```
-There is too much to explain about this code here, so it is explained in detail on [this page](/explanations/interrupt_vector_S.html)
+There is too much to explain about this code here, so it is explained in detail on [this page](/explanations/interrupt_vector_S)
 
 ## Handling IRQs
-Now that we have set up the IRQ exception handler, we need to add the ability to find out which IRQ was triggered, and the ability to handle that IRQ. To do this, we are going to need to read and write to the [IRQ peripheral](/extra/interrupts.html).  We can easily acomplish this using a C struct:
+Now that we have set up the IRQ exception handler, we need to add the ability to find out which IRQ was triggered, and the ability to handle that IRQ. To do this, we are going to need to read and write to the [IRQ peripheral](/extra/interrupts).  We can easily acomplish this using a C struct:
 ``` c
 typedef struct {
     uint32_t irq_basic_pending;
@@ -220,7 +220,7 @@ __inline__ void ENABLE_INTERRUPTS(void) {
 
 ## The System Timer
 
-Interrupts are useless unless we have something to actually interrupt us!  We are going to set up the [system timer peripheral](/extra/sys-time.html), as this will be useful in setting up processes.
+Interrupts are useless unless we have something to actually interrupt us!  We are going to set up the [system timer peripheral](/extra/sys-time), as this will be useful in setting up processes.
 
 We declare a C struct to map out the system timer peripheral:
 ``` c
@@ -281,10 +281,10 @@ to see our timer interupt in action.
 Next, we are going to look at getting another process to run.
 
 **Previous**:
-[Part 6 - Printing to a Real Screen](/tutorial/hdmi.html)
+[Part 6 - Printing to a Real Screen](/tutorial/hdmi)
 
 **Next**:
-[Part 8 - Processes](/tutorial/process.html)
+[Part 8 - Processes](/tutorial/process)
 
 \*\*\***To those following along using a VM**
 

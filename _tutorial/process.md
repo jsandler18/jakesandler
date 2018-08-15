@@ -78,7 +78,7 @@ void process_init(void) {
 ```
 This creates a new PCB for the main process.  The main process is given the name "Init", so I will refer to it as such from now on.  It sets this PCB as the currently running one.
 
-The last thing this code does is sets the timer to go off in 10 ms. In the [last part](/tutorial/interrupts.html), we set up the system timer to simply print something once every 3 seconds.  Now we are going to use it for something more important.  Setting the timer here triggers this system.
+The last thing this code does is sets the timer to go off in 10 ms. In the [last part](/tutorial/interrupts), we set up the system timer to simply print something once every 3 seconds.  Now we are going to use it for something more important.  Setting the timer here triggers this system.
 
 ## Scheduling Processes
 Since normal processes do not have a sense that they have to share the CPU, they are not likely to give it up until they are finished.  In most cases, we must kick them off the CPU.  We can do this by utilizing the system timer.  We pick a specific *Quantum* of time that a process can use the CPU.  Once the quantum is up, the timer will trigger an exception and from there we can switch another process in.  As you can see above, the quantum I chose was 10 ms.
@@ -240,7 +240,7 @@ Once you build, it should look something like this:
 Now that we have real concurrency, we also can have data races! In order to help reslove that, next we are going to talk about locks.
 
 **Previous:**
-[Part 7 - Interrupts](/tutorial/interrupts.html)
+[Part 7 - Interrupts](/tutorial/interrupts)
 
 **Next:**
-[Part 9 - Locks](/tutorial/locks.html)
+[Part 9 - Locks](/tutorial/locks)

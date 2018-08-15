@@ -133,7 +133,7 @@ static void heap_init(uint32_t heap_start) {
 Next up, we are going to get our kernel to print to a real screen.
 
 **Previous**:
-[Part 4 - Wrangling Memory](/tutorial/wrangling-mem.html)
+[Part 4 - Wrangling Memory](/tutorial/wrangling-mem)
 
 **Next**:
-[Part 6 - Printing to a Real Screen](/tutorial/hdmi.html)
+[Part 6 - Printing to a Real Screen](/tutorial/hdmi)

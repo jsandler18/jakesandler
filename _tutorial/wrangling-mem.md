@@ -10,7 +10,7 @@ so large that they take up a significant fraction of memory.
 If you want to download the code and play with it yourself, [see my github](https://github.com/jsandler18/raspi-kernel/tree/62f68bf494eefd372b28ef1ce54841e310f82295)
 
 ## Getting the Size of Memory
-If we want to organize all of memory, we need to know how much memory we actually have availible.  We can do this by accessing the [atags](/extra/atags.html).
+If we want to organize all of memory, we need to know how much memory we actually have availible.  We can do this by accessing the [atags](/extra/atags).
 
 We can match the memory layout of the atags by defining some C types:
 ``` c
@@ -74,7 +74,7 @@ typedef struct page {
 } page_t;
 ```
 
-In order to hold all of the metadata, we reserve a large swath of memory just after the kernel image for an array of page metadata.  We can get this address by using the symbol `__end` that we declared in [the linker script](/explanations/linker_ld.html).  Addtionally, we will create a linked list (implementation explained [here](/explanations/list_h.html)) to keep track of which pages are free.
+In order to hold all of the metadata, we reserve a large swath of memory just after the kernel image for an array of page metadata.  We can get this address by using the symbol `__end` that we declared in [the linker script](/explanations/linker_ld).  Addtionally, we will create a linked list (implementation explained [here](/explanations/list_h)) to keep track of which pages are free.
 
 Once this is done, all we need to do is iterate over the pages and initialize their metadata and add them to the free list.
 
@@ -164,7 +164,7 @@ void free_page(void * ptr) {
 The ability to allocate pages is nice, but the strict 4 KB size is a bit restrictive for most dynamic memory use cases.  Next, we are going to add to this code to implement a dynamic memory allocator that can give you any sized allocation you want!
 
 **Previous**:
-[Part 3 - Organizing our Project](/tutorial/organize.html)
+[Part 3 - Organizing our Project](/tutorial/organize)
 
 **Next**:
-[Part 5 - Dynamic Memory Allocator](/tutorial/dyn-mem.html)
+[Part 5 - Dynamic Memory Allocator](/tutorial/dyn-mem)

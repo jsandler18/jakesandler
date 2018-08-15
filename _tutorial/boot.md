@@ -51,7 +51,7 @@ halt:
     b halt
 ```
 
-For a line-by-line explanation of this code, [see this page](/explanations/boot_S.html)
+For a line-by-line explanation of this code, [see this page](/explanations/boot_S)
 
 ## kernel.c - The C code
 
@@ -175,7 +175,7 @@ void kernel_main(uint32_t r0, uint32_t r1, uint32_t atags)
 }
 ```
 
-For a line-by-line explanation of this code, [see this page](/explanations/kernel_c.html)
+For a line-by-line explanation of this code, [see this page](/explanations/kernel_c)
 
 ## linker.ld - Tying the pieces together
 There are, broadly speaking, three main steps in the C compilation process.  The first is preproccessing, where all of your `#define` statements are expanded.  The second is compilation to object files, where the individual code files are converted to individual binaries called object files.  The third is linking, where these individual object files are tied together into a single executable.
@@ -227,7 +227,7 @@ SECTIONS
     __end = .;
 }
 ```
-For a line-by-line explanation of this code, [see this page](/explanations/linker_ld.html)
+For a line-by-line explanation of this code, [see this page](/explanations/linker_ld)
 
 
 ## Compiling and Running
@@ -253,7 +253,7 @@ After running this, you should see "Hello, kernel World!" in your normal termina
 Now that we have a kernel that boots, we should organize our project.
 
 **Previous**:
-[Part 1 - Setting up the Development Environment](/tutorial/dev-env.html)
+[Part 1 - Setting up the Development Environment](/tutorial/dev-env)
 
 **Next**:
-[Part 3 - Organizing our Project](/tutorial/organize.html).
+[Part 3 - Organizing our Project](/tutorial/organize).

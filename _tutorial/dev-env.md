@@ -40,4 +40,4 @@ We can check if this was successful by doing `qemu-system-arm --version`
 Now that we have the environment set up, we can now build a kernel.
 
 **Next**:
-[Part 2 - Getting Something to Boot](/tutorial/boot.html)!
+[Part 2 - Getting Something to Boot](/tutorial/boot)!

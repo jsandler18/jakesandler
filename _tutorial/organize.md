@@ -4,7 +4,7 @@ title:  Part 03 - Organizing our Project
 ---
 
 This section is more of an exercise in C project organization than OS Dev.  If that doesn't interest you, you should skip ahead to [Part 4 - Wrangling
-Memory](/tutorial/wrangling-mem.html)
+Memory](/tutorial/wrangling-mem)
 
 If you want to download the code and play with it yourself, [see my git repo](https://github.com/jsandler18/raspi-kernel/tree/b12b2e471ffab30b721a1eb3de9c92df8f948c11).
 
@@ -81,7 +81,7 @@ run: build
     qemu-system-arm -m 256 -M raspi2 -serial stdio -kernel kernel.img
 ```
 
-For a line-by-line explanation of this code, [see this page](/explanations/makefile.html)
+For a line-by-line explanation of this code, [see this page](/explanations/makefile)
 
 This leaves our directory structure like this:
 ```
@@ -103,7 +103,7 @@ L__ build/
 
 Right now, kernel.c contains all of the C source code for the entire kernel.  It contains the logic for setting up UART, and for doing IO.  Let's factor that stuff out into logical files.
 
-First, we are going to put that [that big enum](/explanations/kernel_c.html#peripheral-specification-and-basic-read-and-write) from kernel.c that describes the UART peripheral, and all of the function signatures related to UART into `include/kernel/uart.h`. Then we are going to move all of the uart code to `src/kernel/uart.c`. This should leave `kernel.c` with just `kernel_main` in it.
+First, we are going to put that [that big enum](/explanations/kernel_c#peripheral-specification-and-basic-read-and-write) from kernel.c that describes the UART peripheral, and all of the function signatures related to UART into `include/kernel/uart.h`. Then we are going to move all of the uart code to `src/kernel/uart.c`. This should leave `kernel.c` with just `kernel_main` in it.
 
 Now, we are going to write some library code.  We create the files `src/common/stdlib.c` and `src/common/stdio.c` and corresponding header files.
 
@@ -139,7 +139,7 @@ L__ build/
 Now that our project is organized sensibly, lets look at how to manage memory.
 
 **Previous**:
-[Part 2 - Getting Something to Boot](/tutorial/boot.html)
+[Part 2 - Getting Something to Boot](/tutorial/boot)
 
 **Next**:
-[Part 4 - Wrangling Memory](/tutorial/wrangling-mem.html)
+[Part 4 - Wrangling Memory](/tutorial/wrangling-mem)
